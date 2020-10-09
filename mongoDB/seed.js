@@ -10,20 +10,23 @@ const insertPictures = function () {
   let count = 0;
   async.whilst(
     () => count < 10,
-    (cb) => {
+    async (cb) => {
       count++;
       console.log('Pic count: ', count);
-      let picData = generatePicturesData(10000); // - 3 min pg ? couch ?
+      let picData = await generatePicturesData(10000);
 
-      Pictures.create(picData)
+      await Pictures.insertMany(picData)
         .then(() => {
           console.log('Filled photos');
-          cb();
+          // cb();
         })
         .catch((err) => {
-          console.log('Complete seeding 1 million records for Pictures!!');
-          console.log('Complete iteration! expected - ', err.reason + '\n' + 'Press ctrl + c to exit');
+          console.log(err.reason);
         });
+    },
+    () => {
+      console.log('Complete seeding 1 million records for Pictures!!');
+      console.log('Complete iteration!' + '\n' + 'Press ctrl + c to exit');
     }
   );
 

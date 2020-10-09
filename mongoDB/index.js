@@ -1,10 +1,9 @@
-/* eslint-disable no-console */
+const dbConfig = require('./config/db.config');
 const mongoose = require('mongoose');
-require('dotenv').config();
 
-const uri = process.env.MONGODB_URI || 'localhost';
+const uri = process.env.MONGODB_URI || dbConfig.HOST;
 
-mongoose.connect(`mongodb://${uri}:27017/picturesSDC1`, { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect(`mongodb://${uri}:${dbConfig.port}/${dbConfig.DB}`, { useUnifiedTopology: true, useNewUrlParser: true });
 
 const db = mongoose.connection;
 

@@ -9,8 +9,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(`${__dirname}/../public`));
 
-require('../mongoDB/routes/picture.routes')(app);
-require('../mongoDB/routes/reviewPics.routes')(app);
+
+/* Mongo Routes */
+// require('../mongoDB/routes/picture.routes')(app);
+// require('../mongoDB/routes/reviewPics.routes')(app);
+
+/* MySql Routes */
+require('../rdbms-sdc');
+require('../rdbms-sdc/routes/picture.routes')(app);
 
 module.exports.app = app;
 

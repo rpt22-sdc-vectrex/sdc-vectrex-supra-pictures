@@ -3,22 +3,22 @@ module.exports = app => {
 
   var router = require("express").Router();
 
-  // Create a new
+  // Create
   router.post("/", reviewPics.create);
 
   // Retrieve all
   router.get("/", reviewPics.findAll);
 
-  // Retrieve a single  with id
+  // Retrieve single
   router.get("/:itemId", reviewPics.findOne);
 
-  // Update a  with id
+  // Update by id
   router.put("/:itemId", reviewPics.update);
 
-  // Delete a  with id
+  // Delete by id
   router.delete("/:itemId", reviewPics.delete);
 
-  // Create a new
+  // Delete all
   router.delete("/", reviewPics.deleteAll);
 
   app.use("/reviewPhotos", router);

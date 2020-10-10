@@ -29,13 +29,10 @@ class Pictures extends React.Component {
   }
 
   componentDidMount() {
-    const itemId = window.location.pathname.slice(1);
-    axios.get('/pictures', {
-      params: {
-        itemId: itemId || 1,
-      },
-    })
+    const itemId = window.location.search.slice(1);
+    axios.get(`/pictures/${itemId}`)
       .then((response) => {
+        console.log('Pictures: ', response.data);
         const pics = response.data.item_pictures;
         this.setState({
           pictures: pics,

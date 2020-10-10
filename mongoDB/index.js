@@ -1,10 +1,9 @@
-/* eslint-disable no-console */
+const dbConfig = require('./config/db.config');
 const mongoose = require('mongoose');
-require('dotenv').config();
 
-const uri = process.env.MONGODB_URI || 'localhost';
+const uri = process.env.MONGODB_URI || dbConfig.HOST;
 
-mongoose.connect(`mongodb://${uri}:27017/pictures`, { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect(`mongodb://${uri}:${dbConfig.port}/${dbConfig.DB}`, { useUnifiedTopology: true, useNewUrlParser: true });
 
 const db = mongoose.connection;
 
@@ -12,26 +11,3 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
   console.log('Database successfully connected');
 });
-
-const PicturesSchema = mongoose.Schema({
-  item_id: Number,
-  store_id: Number,
-  item_pictures: [{ large: String, normal: String, thumbnail: String }],
-  seller_picture: String,
-  store_picture: String,
-});
-
-// Pictures Collection
-const Pictures = mongoose.model('Pictures', PicturesSchema);
-
-// ReviewPhotos collection
-const ReviewPhotosSchema = mongoose.Schema({
-  id: { type: Number, unique: true },
-  user_picture: String,
-  review_picture: String,
-});
-
-const ReviewPhotos = mongoose.model('ReviewPhotos', ReviewPhotosSchema);
-
-module.exports.Pictures = Pictures;
-module.exports.ReviewPhotos = ReviewPhotos;

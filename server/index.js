@@ -1,7 +1,6 @@
 // Entry point of express server
 const express = require('express');
 const cors = require('cors');
-const { Pictures, ReviewPhotos } = require('../mongoDB/index');
 
 const app = express();
 
@@ -9,6 +8,21 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(`${__dirname}/../public`));
+
+
+/* Mongo Routes */
+// require('../mongoDB/routes/picture.routes')(app);
+// require('../mongoDB/routes/reviewPics.routes')(app);
+
+/* MySql Routes */
+require('../rdbms-sdc');
+require('../rdbms-sdc/routes/picture.routes')(app);
+
+module.exports.app = app;
+
+
+
+/* *** FEC: Code base ***
 
 // endpoint form: '/pictures/batch?itemIds[]=1&itemIds[]=2'
 // or '/pictures/batch?storeIds[]=1&storeIds[]=2'
@@ -164,5 +178,4 @@ app.get('/reviewPhotos/batch', (req, res) => {
         });
     });
 });
-
-module.exports.app = app;
+*/

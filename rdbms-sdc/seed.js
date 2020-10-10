@@ -1,27 +1,27 @@
-/* eslint-disable no-console */
 let async = require('async');
-const { Pictures } = require('./models/pictures.model');
-const { ReviewPhotos } = require('./models/reviewPics.model');
+const db = require('./index');
+const Pictures = db.pictures;
+const ReviewPhotos = db.reviewPhotos;
 const { generatePicturesData } = require('./helpers/generatePicturesData');
 const { generateReviewPhotosData } = require('./helpers/generateReviewPhotosData');
 
-const insertPictures = function () {
-
+const insertPictures =  function () {
+  db.sequelize.sync({ });
   let count = 0;
   async.whilst(
-    () => count < 10,
+    () => count < 100 ,
     async (cb) => {
       count++;
       console.log('Pic count: ', count);
       let picData = await generatePicturesData(10000);
 
-      await Pictures.insertMany(picData)
+      await Pictures.bulkCreate(picData)
         .then(() => {
           console.log('Filled photos');
           cb();
         })
         .catch((err) => {
-          console.log(err.reason);
+          console.log(err, '***', err.reason);
         });
     },
     () => {
@@ -33,22 +33,22 @@ const insertPictures = function () {
 };
 
 const insertReviewPhotos = function () {
-
+  db.sequelize.sync({ });
   let count = 0;
   async.whilst(
-    () => count < 10,
+    () => count < 100,
     async (cb) => {
       count++;
       console.log('Review pic count: ', count);
       let reviewPicData = await generateReviewPhotosData(10000);
 
-      await ReviewPhotos.insertMany(reviewPicData)
+      await ReviewPhotos.bulkCreate(reviewPicData)
         .then(() => {
           console.log('Filled Review Photos');
           cb();
         })
         .catch((err) => {
-          console.log(err.reason);
+          console.log(err, '***', err.reason);
         });
     },
     () => {
@@ -59,7 +59,7 @@ const insertReviewPhotos = function () {
 
 };
 
-insertPictures();
+// insertPictures();
 insertReviewPhotos();
 
 

@@ -9,7 +9,7 @@ const insertPictures =  function () {
   db.sequelize.sync({ });
   let count = 0;
   async.whilst(
-    () => count < 100 ,
+    () => count < 1000,
     async (cb) => {
       count++;
       console.log('Pic count: ', count);
@@ -36,7 +36,7 @@ const insertReviewPhotos = function () {
   db.sequelize.sync({ });
   let count = 0;
   async.whilst(
-    () => count < 100,
+    () => count < 1000,
     async (cb) => {
       count++;
       console.log('Review pic count: ', count);
@@ -52,16 +52,19 @@ const insertReviewPhotos = function () {
         });
     },
     () => {
-      console.log('Complete seeding 1 million records for Review Photos!!');
+      console.log(`Complete seeding ${(count-1) * 10000} million records for Review Photos!!`);
       console.log('Complete iteration!' + '\n' + 'Press ctrl + c to exit');
     }
   );
 
 };
 
-// insertPictures();
-insertReviewPhotos();
+async function startSeed() {
+  await insertPictures();
+  await insertReviewPhotos();
+}
 
+startSeed();
 
 
 

@@ -27,9 +27,8 @@ app.get('/:itemId', async (req, res) => {
   await makeResponse(res, async () => {
     const picture = await PicturesModel.findByItemId({ item_id: Number(req.params.itemId) });
     const item = picture.rows[0];
-    console.log('get item', item);
     if (!item) {
-      return { message: `${itemId} does not exist in database.` };
+      return { message: `${req.params.itemId} does not exist in database.` };
     }
     return item;
   });
@@ -39,7 +38,6 @@ app.post('/', async (req, res) => {
   PicturesModel.findByItemId({ item_id: Number(req.body.item_id) })
   .then((result) => {
     if (result.rows.length) {
-      console.log(result, 'post')
       res.send({ message: 'Record already exists!! '});
     } else {
        makeResponse(res, () => {
@@ -68,10 +66,13 @@ app.put('/:itemId', async (req, res) => {
     }
   })
   .catch(err => {
-    return {
-      message:
-        err.message || "Error occurred while updating the picture."
-    };
+    makeResponse(res, async () => {
+      return {
+        message:
+          err.message || "Error occurred while updating the picture."
+      };
+    });
+
   });;
 });
 
@@ -79,7 +80,6 @@ app.delete('/:itemId', async (req, res) => {
   PicturesModel.findByItemId({ item_id: Number(req.params.itemId) })
   .then((result) => {
     if (result.rows.length) {
-      console.log(result, 'del');
       makeResponse(res, async () => {
         await PicturesModel.remove(result.rows[0].id);
         return {
@@ -87,16 +87,21 @@ app.delete('/:itemId', async (req, res) => {
         };
       });
     } else {
-      return {
-        message: `Cannot delete Pictures with id=${req.params.itemId}!`
-      };
+      makeResponse(res, async () => {
+        return {
+          message: `Cannot delete Pictures with id=${req.params.itemId}!`
+        };
+      });
+
     }
   })
   .catch(err => {
-    return {
-      message:
-        err.message || "Error occurred while removing the picture."
-    };
+    makeResponse(res, async () => {
+      return {
+        message:
+          err.message || "Error occurred while removing the picture."
+      };
+    });
   });;
 });
 

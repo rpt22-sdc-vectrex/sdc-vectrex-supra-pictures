@@ -1,4 +1,3 @@
-// Entry point of express server
 const express = require('express');
 const cors = require('cors');
 
@@ -11,8 +10,8 @@ app.use(express.static(`${__dirname}/../public`));
 
 
 /* Mongo Routes */
-require('../mongoDB/routes/picture.routes')(app);
-require('../mongoDB/routes/reviewPics.routes')(app);
+// require('../mongoDB/routes/picture.routes')(app);
+// require('../mongoDB/routes/reviewPics.routes')(app);
 
 /* MySql || postgres Routes */
 // require('../rdbms-sdc/index');
@@ -20,9 +19,9 @@ require('../mongoDB/routes/reviewPics.routes')(app);
 // require('../rdbms-sdc/routes/picture.routes')(app);
 
 /* Couchbase Routes */
-// require('../couchbase');
-// const { PicturesRoutes } = require('../couchbase/pictures/pictures.controller');
-// app.use('/pictures', PicturesRoutes);
+require('../couchbase');
+const { PicturesRoutes } = require('../couchbase/pictures/pictures.controller');
+app.use('/pictures', PicturesRoutes);
 
 
 module.exports.app = app;

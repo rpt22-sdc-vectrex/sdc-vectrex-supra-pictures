@@ -25,7 +25,7 @@ const insertPictures =  function () {
         });
     },
     () => {
-      console.log('Complete seeding 1 million records for Pictures!!');
+      console.log('Complete seeding 10 million records for Pictures!!');
       console.log('Complete iteration!' + '\n' + 'Press ctrl + c to exit');
     }
   );
@@ -52,7 +52,7 @@ const insertReviewPhotos = function () {
         });
     },
     () => {
-      console.log(`Complete seeding ${(count-1) * 10000} million records for Review Photos!!`);
+      console.log(`Complete seeding 10 million records for Review Photos!!`);
       console.log('Complete iteration!' + '\n' + 'Press ctrl + c to exit');
     }
   );

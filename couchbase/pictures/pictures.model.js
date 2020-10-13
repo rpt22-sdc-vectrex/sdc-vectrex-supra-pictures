@@ -14,9 +14,8 @@ const PicturesSchema = new ottoman.Schema({
 });
 
 PicturesSchema.index.findByItemId = { by: 'item_id',  type: 'n1ql'};
-// PicturesSchema.index.ID_KEY = 'item_id';
 
-const PicturesModel = ottoman.model('pictures', PicturesSchema);
+const PicturesModel = ottoman.model('pictures', PicturesSchema, { idKey: "item_id" });
 
 module.exports = {
   PicturesModel

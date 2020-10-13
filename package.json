@@ -11,7 +11,8 @@
     "seedDB": "node ./mongoDB/seed.js",
     "seed": "node ./rdbms-sdc/seed.js",
     "lint": "eslint",
-    "test": "cross-env NODE_ENV=test jest --testTimeout=10000"
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
+    "gen": "./cbimp.sh"
   },
   "repository": {
     "type": "git",

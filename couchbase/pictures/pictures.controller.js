@@ -18,7 +18,7 @@ async function makeResponse(res, action) {
 app.get('/', async (req, res) => {
   await makeResponse(res, async () => {
     const pictures = await PicturesModel.find({});
-    const items  = pictures.rows;
+    const items  = pictures.rows.slice(0, 20);
     return items;
   });
 });
@@ -52,17 +52,21 @@ app.post('/', async (req, res) => {
 });
 
 app.put('/:itemId', async (req, res) => {
+  console.log('put:')
   PicturesModel.findByItemId({ item_id: Number(req.params.itemId) })
   .then((result) => {
+    console.log('put res:', result.rows)
     if (result.rows.length) {
       makeResponse(res, async () => {
         await PicturesModel.replace(req.body, result.rows[0].id);
         return { message: 'Picture updated successfully '};
       });
     } else {
-      return {
-        message: `Cannot update Pictures with id=${req.params.itemId}!`
-      };
+      makeResponse(res, async () => {
+        return {
+          message: `Cannot update Pictures with id=${req.params.itemId}!`
+        };
+      });
     }
   })
   .catch(err => {
@@ -77,11 +81,15 @@ app.put('/:itemId', async (req, res) => {
 });
 
 app.delete('/:itemId', async (req, res) => {
+  console.log('del:')
   PicturesModel.findByItemId({ item_id: Number(req.params.itemId) })
   .then((result) => {
+    console.log('del result:')
     if (result.rows.length) {
+      console.log('result.rows.length:')
       makeResponse(res, async () => {
-        await PicturesModel.remove(result.rows[0].id);
+        console.log('result.rows[0].id', result.rows)
+        await PicturesModel.remove(result.rows[0].item_id);
         return {
           message: "Picture deleted successfully!"
         };

@@ -8,8 +8,8 @@ const createJsonFiles = (i) => {
     () => count <= 25,
     async (cb) => {
       console.log('count: ', count);
-      let writableStream = fs.createWriteStream(`./jsonfiles1/pics${fileCount}.json`);
-      let picData = await generatePicturesData(10);
+      let writableStream = fs.createWriteStream(`./jsonfiles/pics${fileCount}.json`);
+      let picData = await generatePicturesData(1e5);
       const jsonString = await JSON.stringify(picData);
       writableStream.write(jsonString);
       count++;

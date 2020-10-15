@@ -7,4 +7,5 @@ package-lock.json
 
 mongoDB/config
 rdbms-sdc/config
-
+couchbase/config
+couchbase/jsonfiles

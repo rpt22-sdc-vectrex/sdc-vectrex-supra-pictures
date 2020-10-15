@@ -9,7 +9,7 @@ const insertPictures = function () {
 
   let count = 0;
   async.whilst(
-    () => count < 10,
+    () => count < 1000,
     async (cb) => {
       count++;
       console.log('Pic count: ', count);
@@ -36,7 +36,7 @@ const insertReviewPhotos = function () {
 
   let count = 0;
   async.whilst(
-    () => count < 10,
+    () => count < 1000,
     async (cb) => {
       count++;
       console.log('Review pic count: ', count);
@@ -59,8 +59,13 @@ const insertReviewPhotos = function () {
 
 };
 
-insertPictures();
-insertReviewPhotos();
+
+async function startSeed() {
+  await insertPictures();
+  await insertReviewPhotos();
+}
+
+startSeed();
 
 
 

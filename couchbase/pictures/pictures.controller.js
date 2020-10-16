@@ -52,10 +52,8 @@ app.post('/', async (req, res) => {
 });
 
 app.put('/:itemId', async (req, res) => {
-  console.log('put:')
   PicturesModel.findByItemId({ item_id: Number(req.params.itemId) })
   .then((result) => {
-    console.log('put res:', result.rows)
     if (result.rows.length) {
       makeResponse(res, async () => {
         await PicturesModel.replace(req.body, result.rows[0].id);
@@ -81,14 +79,10 @@ app.put('/:itemId', async (req, res) => {
 });
 
 app.delete('/:itemId', async (req, res) => {
-  console.log('del:')
   PicturesModel.findByItemId({ item_id: Number(req.params.itemId) })
   .then((result) => {
-    console.log('del result:')
     if (result.rows.length) {
-      console.log('result.rows.length:')
       makeResponse(res, async () => {
-        console.log('result.rows[0].id', result.rows)
         await PicturesModel.remove(result.rows[0].item_id);
         return {
           message: "Picture deleted successfully!"

@@ -16,7 +16,7 @@ const insertPictures = function () {
       cb();
     },
     () => {
-      console.log('Complete seeding 1 million records for Pictures!!');
+      console.log('Complete seeding 100 records for Pictures!!');
       console.log('Complete iteration!' + '\n' + 'Press ctrl + c to exit');
     }
   );

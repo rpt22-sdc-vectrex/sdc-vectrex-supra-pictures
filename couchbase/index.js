@@ -11,9 +11,10 @@ ottoman.connect({
     connectionString: `couchbase://${dbConfig.HOST}:${dbConfig.port}`,
     username: `${dbConfig.USER}`,
     password: `${dbConfig.PASSWORD}`
-});
+})
 
-ottoman.ensureIndexes().then(() => {
+// commenting out for tests
+/* ottoman.ensureIndexes().then(() => {
   console.log('Indexes are registered');
 })
-.catch(err => console.log(err));
+.catch(err => console.log(err)); */

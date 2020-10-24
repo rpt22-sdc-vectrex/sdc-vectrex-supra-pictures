@@ -14,7 +14,7 @@ ottoman.connect({
 })
 
 // commenting out for tests
-/* ottoman.ensureIndexes().then(() => {
+ottoman.ensureIndexes().then(() => {
   console.log('Indexes are registered');
 })
-.catch(err => console.log(err)); */
+.catch(err => console.log(err));

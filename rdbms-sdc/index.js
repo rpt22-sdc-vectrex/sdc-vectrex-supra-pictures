@@ -2,7 +2,7 @@ const mysql = require('mysql2/promise');
 const Sequelize = require('sequelize');
 
 /*  To use Postgres */
-const dbConfig = require('./config/pg.config');
+/* const dbConfig = require('./config/pg.config');
 const { Client } = require('pg');
 const connectionString = `postgres://${dbConfig.USER}@${dbConfig.HOST}:${dbConfig.port}/${dbConfig.DB}`;
 const client = new Client({
@@ -11,11 +11,11 @@ const client = new Client({
 client
   .connect()
   .then(() => console.log('*** postgres database created successfully ***'))
-  .catch(err => console.error('connection error', err.stack))
+  .catch(err => console.error('connection error', err.stack)) */
 
 
 /*  To use mysql */
-/*
+
 const dbConfig = require('./config/sql.config');
 mysql.createConnection({
   host: dbConfig.HOST,
@@ -28,7 +28,7 @@ mysql.createConnection({
   })
   .then(() => {
     console.log('*** Mysql database created successfully ***');
-  }); */
+  });
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,

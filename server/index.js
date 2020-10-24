@@ -14,14 +14,14 @@ app.use(express.static(`${__dirname}/../public`));
 // require('../mongoDB/routes/reviewPics.routes')(app);
 
 /* MySql || postgres Routes */
-// require('../rdbms-sdc/index');
-// require('../rdbms-sdc');
-// require('../rdbms-sdc/routes/picture.routes')(app);
+require('../rdbms-sdc/index');
+require('../rdbms-sdc');
+require('../rdbms-sdc/routes/picture.routes')(app);
 
 /* Couchbase Routes */
-require('../couchbase');
-const { PicturesRoutes } = require('../couchbase/pictures/pictures.controller');
-app.use('/pictures', PicturesRoutes);
+// require('../couchbase');
+// const { PicturesRoutes } = require('../couchbase/pictures/pictures.controller');
+// app.use('/pictures', PicturesRoutes);
 
 
 module.exports.app = app;

@@ -9,11 +9,11 @@ const insertPictures =  function () {
   db.sequelize.sync({ });
   let count = 0;
   async.whilst(
-    () => count < 1000,
+    () => count < 1,
     async (cb) => {
       count++;
       console.log('Pic count: ', count);
-      let picData = await generatePicturesData(10000);
+      let picData = await generatePicturesData(10);
 
       await Pictures.bulkCreate(picData)
         .then(() => {
@@ -36,11 +36,11 @@ const insertReviewPhotos = function () {
   db.sequelize.sync({ });
   let count = 0;
   async.whilst(
-    () => count < 1000,
+    () => count < 1,
     async (cb) => {
       count++;
       console.log('Review pic count: ', count);
-      let reviewPicData = await generateReviewPhotosData(10000);
+      let reviewPicData = await generateReviewPhotosData(10);
 
       await ReviewPhotos.bulkCreate(reviewPicData)
         .then(() => {

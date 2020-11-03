@@ -2,7 +2,7 @@ node_modules
 
 .env
 
-pictures.bundle.js
+
 package-lock.json
 
 mongoDB/config

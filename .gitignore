@@ -9,3 +9,7 @@ mongoDB/config
 rdbms-sdc/config
 couchbase/config
 couchbase/jsonfiles
+
+memlimit.js
+newrelic_agent.log
+newrelic.js

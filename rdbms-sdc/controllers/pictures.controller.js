@@ -46,7 +46,7 @@ exports.findAll = (req, res) => {
 // Find picture with an id
 exports.findOne = (req, res) => {
   const itemId = req.params.itemId;
-  console.log('itemID', itemId)
+
     Pictures.findOne({ where: { item_id: itemId }})
     .then(data => {
       if (!data) {

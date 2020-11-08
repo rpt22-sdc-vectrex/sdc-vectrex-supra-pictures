@@ -39,6 +39,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.9.28",
     "mysql2": "^2.2.5",
+    "newrelic": "^6.14.0",
     "nodemon": "^2.0.4",
     "ottoman": "^2.0.0-alpha.5",
     "pg": "^8.4.0",

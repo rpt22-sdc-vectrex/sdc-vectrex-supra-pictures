@@ -1,5 +1,4 @@
 require('newrelic');
-const path = require('path');
 const compression = require('compression');
 const expressStaticGzip = require("express-static-gzip");
 const responseTime = require('response-time');

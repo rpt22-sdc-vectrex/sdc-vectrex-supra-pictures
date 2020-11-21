@@ -1,11 +1,12 @@
 node_modules
-
 .env
-
-pictures.bundle.js
 package-lock.json
 
 mongoDB/config
 rdbms-sdc/config
 couchbase/config
 couchbase/jsonfiles
+
+memlimit.js
+newrelic_agent.log
+newrelic.js

@@ -42,7 +42,7 @@ class Pictures extends React.Component {
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
-        console.log(error.response.data.error);
+        console.log(error.response);
       });
   }
 

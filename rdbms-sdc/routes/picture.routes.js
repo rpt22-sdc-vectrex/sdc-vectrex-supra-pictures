@@ -1,5 +1,6 @@
 module.exports = app => {
   const pictures = require("../controllers/pictures.controller.js");
+  const cache = require("../../cache");
 
   var router = require("express").Router();
 
@@ -7,10 +8,10 @@ module.exports = app => {
   router.post("/", pictures.create);
 
   // Retrieve all
-  router.get("/", pictures.findAll);
+  router.get("/", cache(600), pictures.findAll);
 
   // Retrieve single
-  router.get("/:itemId", pictures.findOne);
+  router.get("/:itemId", cache(600), pictures.findOne);
 
   // Update by id
   router.put("/:itemId", pictures.update);

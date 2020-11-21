@@ -132,7 +132,7 @@ class LargeCarousel extends React.Component {
       <LargeGridContainer>
 
         <LargeGrid>
-          <HeartButton onClick={this.handleHeartClick}>
+          <HeartButton aria-label="pic-btn" onClick={this.handleHeartClick}>
             <span>
               <svg id="heart-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 {liked
@@ -141,7 +141,7 @@ class LargeCarousel extends React.Component {
               </svg>
             </span>
           </HeartButton>
-          <ButtonLeft className="left-button" onClick={(e) => { buttonClick(e); }}>
+          <ButtonLeft aria-label="pic-btn" className="left-button" onClick={(e) => { buttonClick(e); }}>
             <span className="left-button">
               <svg className="left-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path className="left-button" d="M16,21a0.994,0.994,0,0,1-.664-0.253L5.5,12l9.841-8.747a1,1,0,0,1,1.328,1.494L8.5,12l8.159,7.253A1,1,0,0,1,16,21Z" />
@@ -151,7 +151,7 @@ class LargeCarousel extends React.Component {
           <LargePicArea>
             <Image key={currPicPos} src={picture.large} alt="Pending Imagery" />
           </LargePicArea>
-          <ButtonRight className="right-button" onClick={(e) => { buttonClick(e); }}>
+          <ButtonRight aria-label="pic-btn" className="right-button" onClick={(e) => { buttonClick(e); }}>
             <span className="right-button">
               <svg className="right-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path className="right-button" d="M8,21a1,1,0,0,1-.664-1.747L15.5,12,7.336,4.747A1,1,0,0,1,8.664,3.253L18.5,12,8.664,20.747A0.994,0.994,0,0,1,8,21Z" />

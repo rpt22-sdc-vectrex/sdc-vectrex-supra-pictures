@@ -1,5 +1,9 @@
 # Pictures Module
 
+![sdc (1)](https://user-images.githubusercontent.com/61848395/111083044-bdf1d400-84c8-11eb-99e6-3c6b6ff1dab2.gif)
+
+---
+
 To start server: npm run start
 
 To seed database: npm run seedDB
